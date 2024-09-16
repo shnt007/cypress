@@ -17,6 +17,8 @@
 import './commands'
 
 require('cypress-xpath')
+
+/** for Html report */
 // import 'cypress-mochawesome-reporter'
 
 // Alternatively you can use CommonJS syntax:
