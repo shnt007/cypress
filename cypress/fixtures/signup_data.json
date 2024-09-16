@@ -1,0 +1,32 @@
+{
+    "valid_data": {
+        "name": "Ram",
+        "email": "demo6@email.com",
+        "password": "P@ssword123",
+        "confirm_password": "P@ssword123"
+    },
+    "used_email": {
+        "name": "Ram",
+        "email": "demo1@email.com",
+        "password": "P@ssword123",
+        "confirm_password": "P@ssword123"
+    },
+    "confirm_password": {
+        "name": "Ram",
+        "email": "demo@email.com",
+        "password": "P@ssword123",
+        "confirm_password": "password"
+    },
+    "password_length": {
+        "name": "Ram",
+        "email": "demo3@email.com",
+        "password": "pass",
+        "confirm_password": "pass"
+    },
+    "without_data": {
+        "name": "{backspace}",
+        "email": "{backspace}",
+        "password": "{backspace}",
+        "confirm_password": "{backspace}"
+    }
+}

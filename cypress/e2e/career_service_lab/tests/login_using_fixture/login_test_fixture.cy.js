@@ -6,13 +6,14 @@ describe('Login using Fixture with single data', () => {
 
     let userdata;
     beforeEach(() => {
-        cy.fixture(`multiplelogindata.json`).then((data) => {
+        cy.fixture(`login_data.json`).then((data) => {
             userdata = data
         })
-        testdata.base_url()
+        testdata.navigate_to_login()
     })
 
     it('Test 1:Login with valid email and valid password', () => {
+
         testdata.login(userdata.valid_data.email, userdata.valid_data.password)
         testdata.verify_login_with_valid_credentials()
         testdata.logout()

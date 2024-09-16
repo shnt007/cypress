@@ -7,9 +7,9 @@ export class login_testdata_using_fixture {
     profile_dropdown_button = `button[type='button']`
     logout_buttom = `.dropdown-user-menu > :nth-child(4)`
 
-    base_url() {
+    navigate_to_login() {
         /* To disable xhr/fetch log */
-        // cy.intercept({ resourceType: /xhr|fetch/ }, { log: false })
+        cy.intercept({ resourceType: /xhr|fetch/ }, { log: false })
         cy.visit(this.url)
     }
 
