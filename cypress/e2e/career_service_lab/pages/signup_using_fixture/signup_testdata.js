@@ -5,6 +5,14 @@ export class signp_data {
     password_textbox = `#password`
     confirm_password_textbox = `#password_confirmation`
     register_button = `button[type='submit']`
+    register_successful_msg_field = `div[class='Toastify__toast-body']`
+    email_already_exit_msg_field = '.Toastify__toast-body'
+    pass_donot_match_msg_field = `p[class='mt-1.5 text-xs text-error-dark ']`
+    pass_mustbe_8_character_msg_field = `p[class='mt-1.5 text-xs text-error-dark ']`
+    enter_name_msg_field = `(//p[@class='mt-1.5 text-xs text-error-dark '])[1]`
+    email_required_msg_field = `(//p[@class='mt-1.5 text-xs text-error-dark '])[2]`
+    pass_must_be_8_character_msg_field = `(//p[@class='mt-1.5 text-xs text-error-dark '])[3]`
+    confirm_pass_msg_field = `(//p[@class='mt-1.5 text-xs text-error-dark '])[4]`
 
     navigate_to_signup() {
         cy.intercept({ resourceType: /xhr|fetch/ }, { log: false })
@@ -20,34 +28,34 @@ export class signp_data {
     }
 
     verify_signup_with_valid_data() {
-        cy.get(`div[class='Toastify__toast-body']`)
+        cy.get(this.register_successful_msg_field, { timeout: 4000 })
             .should(`have.contain`, `Registered successfully!`)
     }
 
     verify_signup_with_already_exist_email() {
         // cy.wait(3000)
-        cy.get('.Toastify__toast-body', { timeout: 10000 }).should('be.visible')
+        cy.get(this.email_already_exit_msg_field, { timeout: 4000 }).should('be.visible')
             .should(`have.contain`, `The email has already been taken.`)
     }
 
     verfiy_signup_with_confirm_password() {
-        cy.get(`p[class='mt-1.5 text-xs text-error-dark ']`)
+        cy.get(this.pass_donot_match_msg_field)
             .should(`have.contain`, `Passwords do not match`)
     }
 
     verify_signup_with_password_length() {
-        cy.get(`p[class='mt-1.5 text-xs text-error-dark ']`)
+        cy.get(this.pass_mustbe_8_character_msg_field)
             .should(`have.contain`, `Password must be 8 characters long`)
     }
 
     verify_signup_without_data() {
-        cy.xpath(`(//p[@class='mt-1.5 text-xs text-error-dark '])[1]`)
+        cy.xpath(this.enter_name_msg_field)
             .should(`have.contain`, `Please enter your name`)
-        cy.xpath(`(//p[@class='mt-1.5 text-xs text-error-dark '])[2]`)
+        cy.xpath(this.email_required_msg_field)
             .should(`have.contain`, `Email is required`)
-        cy.xpath(`(//p[@class='mt-1.5 text-xs text-error-dark '])[3]`)
+        cy.xpath(this.pass_must_be_8_character_msg_field)
             .should(`have.contain`, `Password must be 8 characters long`)
-        cy.xpath(`(//p[@class='mt-1.5 text-xs text-error-dark '])[4]`)
+        cy.xpath(this.confirm_pass_msg_field)
             .should(`have.contain`, `Confirm Password is required`)
     }
 

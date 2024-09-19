@@ -10,7 +10,7 @@ describe('Sign Up', () => {
         register.navigate_to_signup()
     })
 
-    it("Test 1: Signup using valid data", () => {
+    it.only("Test 1: Signup using valid data", () => {
         let name = userdata.valid_data.name
         let email = userdata.valid_data.email
         let password = userdata.valid_data.password
@@ -35,6 +35,7 @@ describe('Sign Up', () => {
         let email = userdata.confirm_password.email
         let password = userdata.confirm_password.password
         let confirm_password = userdata.confirm_password.confirm_password
+
         register.signup(name, email, password, confirm_password)
         register.verfiy_signup_with_confirm_password()
 
@@ -45,6 +46,7 @@ describe('Sign Up', () => {
         let email = userdata.password_length.email
         let password = userdata.password_length.password
         let confirm_password = userdata.password_length.confirm_password
+
         register.signup(name, email, password, confirm_password)
         register.verify_signup_with_password_length()
     })
@@ -58,5 +60,4 @@ describe('Sign Up', () => {
         register.signup(name, email, password, confirm_password)
         register.verify_signup_without_data()
     })
-
 })

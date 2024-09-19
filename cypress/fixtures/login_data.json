@@ -1,7 +1,7 @@
 {
     "valid_data": {
         "email": "subash.gole+labadmin1@codingmountain.com",
-        "password": "stuk-zd9Rnmbcya"
+        "password": "@secret@"
     },
     "invalid_password": {
         "email": "subash.gole+labadmin1@codingmountain.com",

@@ -5,6 +5,8 @@ module.exports = defineConfig({
   /* Auto Reload  */
   watchForFileChanges: false,
 
+  pageLoadTimeout: 10_000,
+
   /** for html report */
   // reporter: 'cypress-mochawesome-reporter',
 

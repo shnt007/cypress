@@ -9,7 +9,8 @@
   "license": "ISC",
   "description": "",
   "dependencies": {
-    "cypress": "^13.14.2"
+    "cypress": "^13.14.2",
+    "json-server": "^1.0.0-beta.2"
   },
   "devDependencies": {
     "cypress-file-upload": "^5.0.8",
