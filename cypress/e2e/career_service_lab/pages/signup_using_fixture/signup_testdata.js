@@ -33,7 +33,6 @@ export class signp_data {
     }
 
     verify_signup_with_already_exist_email() {
-        // cy.wait(3000)
         cy.get(this.email_already_exit_msg_field, { timeout: 4000 }).should('be.visible')
             .should(`have.contain`, `The email has already been taken.`)
     }

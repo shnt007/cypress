@@ -3,7 +3,7 @@ const training = new job_role_training
 
 describe('Job Role Training', () => {
     beforeEach(() => {
-
+        cy.viewport(1366, 768)
         training.navigate_to_login_page()
         training.login('subash.gole+labadmin1@codingmountain.com', '@secret@')
         training.navigate_to_job_role_traning_page()
@@ -19,5 +19,6 @@ describe('Job Role Training', () => {
     it('Test 2: Verify creating training with invalid data', () => {
         training.create_job_role_training()
         training.verify_creating_job_role_traning_with_invalid_data()
+        cy.screenshot()
     });
 });

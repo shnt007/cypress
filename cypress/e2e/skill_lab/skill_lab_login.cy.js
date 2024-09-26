@@ -18,7 +18,7 @@ describe('Skill Lab Login using POM', () => {
 
     /** Method 2 */
     it('Login with Title and Username Validation', () => {
-        Login.login_Skill_Lab('subash.gole+labadmin1@codingmountain.com', 'stuk-zd9Rnmbcya')
+        Login.login_Skill_Lab('subash.gole+labadmin1@codingmountain.com', '@secret@')
         Login.verifyTitle()
         Login.verifyUsername()
         Login.verifyPageTitile()

@@ -28,8 +28,7 @@ export class LoginPage {
     }
 
     verifyTitle() {
-        cy.wait(4000)
-        cy.title().should('include', 'Dashboard - Career Service Center | Skill Lab')
+        cy.title({ timeout: 6000 }).should('include', 'Dashboard - Career Service Center | Skill Lab')
 
     }
     verifyPageTitile() {

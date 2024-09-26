@@ -19,7 +19,7 @@ import './commands'
 require('cypress-xpath')
 
 /** for Html report */
-// import 'cypress-mochawesome-reporter'
+import 'cypress-mochawesome-reporter/register'
 
 // Alternatively you can use CommonJS syntax:
 // require('./commands')

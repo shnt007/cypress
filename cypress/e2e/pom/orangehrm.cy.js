@@ -12,7 +12,7 @@ describe('All Login Test', () => {
     //     cy.visit(`https://opensource-demo.orangehrmlive.com/web/index.php/auth/login`)
     // })
 
-    it('OrangrHRM Login with Valid Credential', () => {
+    it('Test 1: OrangrHRM Login with Valid Credential', () => {
 
         login.enterUsername('Admin')
         login.enterPassword('admin123')
@@ -21,16 +21,16 @@ describe('All Login Test', () => {
 
     })
 
-    it('OrangrHRM Login Invalid Credential', () => {
+    it('Test 2: OrangrHRM Login Invalid Credential', () => {
 
         login.enterUsername('Admin123')
         login.enterPassword('admin123')
         login.enterLogin()
-        cy.get('.oxd-main-menu-search > .oxd-icon-button')
+        cy.get('.oxd-alert-content > .oxd-text')
     })
 });
 
-it('3.OrangrHRM Login Valid Credential', () => {
+it('Test 3: OrangrHRM Login Valid Credential', () => {
 
     login.enterUsername('Admin')
     login.enterPassword('admin123')

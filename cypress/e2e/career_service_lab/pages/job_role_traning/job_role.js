@@ -39,9 +39,9 @@ export class job_role_training {
     }
 
     navigate_to_job_role_traning_page() {
-        cy.get(this.menu_hamburger_icon, { timeout: 6000 }).click()
-        cy.get(this.job_role_link).click()
-        cy.get(this.x_button_on_menu).click()
+        // cy.get(this.menu_hamburger_icon, { timeout: 6000 }).click()
+        cy.get(this.job_role_link, { timeout: 6000 }).click()
+        // cy.get(this.x_button_on_menu).click()
     }
 
     login(email, password) {
@@ -98,7 +98,8 @@ export class job_role_training {
             const date = 'September 25th'
             cy.xpath(`//div[contains(@aria-label,'${date}')]`).click()
             /* Selecting the Time */
-            cy.xpath(`//li[@class='react-datepicker__time-list-item '][80]`).click()
+            const text = '16:00'
+            cy.xpath(`//li[contains(@class, 'datepicker__time') and text()='${text}']`).click();
         })
 
         /* Traning mode */
@@ -168,6 +169,7 @@ export class job_role_training {
 
     verify_creating_job_role_traning_with_invalid_data() {
         cy.get(`.Toastify__toast-body`).should('have.contain', 'Please review the information filled.')
+        
     }
 
 }

@@ -7,8 +7,18 @@ module.exports = defineConfig({
 
   pageLoadTimeout: 10_000,
 
+  // screenshotOnRunFailure: true,
+
   /** for html report */
-  // reporter: 'cypress-mochawesome-reporter',
+  reporter: 'cypress-mochawesome-reporter',
+  reporterOptions: {
+    reportPageTitle: 'demo',
+    reportFilename: "[status]_[datetime]-[name]-report",
+    timestamp: "longDate",
+    overwrite: false,
+    charts: true,
+    autoOpen: true
+  },
 
   /* To capture video */
   video: false,
@@ -18,7 +28,7 @@ module.exports = defineConfig({
       // implement node event listeners here
 
       /* for html report */
-      // required('cypress-mochawesome-reporter/plugin')(on);
+      require('cypress-mochawesome-reporter/plugin')(on);
     },
   },
 });
