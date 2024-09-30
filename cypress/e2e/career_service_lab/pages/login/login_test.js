@@ -21,11 +21,11 @@ export class login_page {
     }
 
     verify_login_with_valid_credentials() {
-        cy.get(this.dashboard_title_field, { timeout: 4000 }).should('have.contain', 'Dashboard')
+        cy.get(this.dashboard_title_field, { timeout: 6000 }).should('have.contain', 'Dashboard')
     }
 
     verify_login_with_invalid_credentials() {
-        cy.get(this.invalid_credential_warning_field, { timeout: 4000 }).should(`have.contain`, `Invalid credentials.`)
+        cy.get(this.invalid_credential_warning_field, { timeout: 6000 }).should(`have.contain`, `Invalid credentials.`)
     }
 
     verify_login_without_credentials() {

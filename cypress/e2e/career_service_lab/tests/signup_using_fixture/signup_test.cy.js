@@ -10,7 +10,7 @@ describe('Sign Up', () => {
         register.navigate_to_signup()
     })
 
-    it.only("Test 1: Signup using valid data", () => {
+    it("Test 1: Signup using valid data", () => {
         let name = userdata.valid_data.name
         let email = userdata.valid_data.email
         let password = userdata.valid_data.password

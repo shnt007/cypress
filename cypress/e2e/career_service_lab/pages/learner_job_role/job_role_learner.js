@@ -26,15 +26,54 @@ export class job_role_learner {
         cy.get(this.login_button).click()
 
         cy.get(this.i_ll_complete_later_dialogue_button, { timeout: 5000 }).click()
-        cy.get(this.job_role_menu_button).click()
-        cy.wait(5000)
-        cy.xpath(this.all_upcoming_training_option_xpath, { timeout: 6000 }).click()
+        cy.get(this.job_role_menu_button).click();
+        cy.wait(6000)
+        cy.xpath(this.all_upcoming_training_option_xpath).click()
     }
 
-    
     verify_no_of_row_and_column() {
         cy.get(this.select_table)
         cy.get(`table[class= 'w-full table-fixed'] > tbody > tr`).should('have.length', '5')
+        cy.wait(6000)
         cy.get(`table[class='w-full table-fixed'] > thead > tr >th`).should('have.length', '6')
     }
+
+    verify_demo_from_the_table() {
+        // cy.get(this.select_table)
+        // cy.get(`table[class='w-full table-fixed'] > tbody > tr`).each(() => {
+        //     cy.get(`td[class="first:pl-8 "]`).contains('Demo').click()
+        //     cy.xpath("//div[@class='flex items-center justify-between gap-3 px-8']/h1").should(`have.contains`, `Demo`)
+        // })
+        cy.get("table[class='w-full table-fixed'] > tbody > tr", { timeout: 10000 })
+            .each(($row) => {
+                if ($row.text().includes("Demo")) {
+                    $row.find(`td[class="first:pl-8 "]`).trigger('click');
+                }
+            })
+        // cy.xpath("//div[@class='flex items-center justify-between gap-3 px-8']/h1")
+        cy.wait(4000)
+        cy.get('.justify-between > .text-2xl')
+            .invoke('text').then((msg) => {
+                expect(msg.trim()).eql("Demo")
+            })
+
+    }
 }
+
+// cy.get('table[class="w-full table-fixed"] > tbody > tr').each(($tr) => {
+//     cy.wrap($tr).within(() => {
+//         // Use invoke to check the text content and debug if needed
+//         cy.get('td[class*="first:pl-8"]').invoke('text').then((text) => {
+//             if (text.includes('Demo')) {
+//                 // Ensure the text is visible before clicking
+//                 cy.contains('Demo', { timeout: 10000 }).should('be.visible').click();
+//                 cy.wait(4000)
+
+//             }
+//         });
+//     });
+// });
+// cy.xpath("//div[@class='flex items-center justify-between gap-3 px-8']/h1")
+
+
+

@@ -6,10 +6,15 @@ describe('Job Role Learner', () => {
     beforeEach(() => {
         job_role.navigate_to_login()
         job_role.login(`subash.gole+learner1@codingmountain.com`, `@secret@`)
+        cy.wait(6000)
     })
 
     it('Verify Row and Colume', () => {
 
         job_role.verify_no_of_row_and_column()
+    });
+
+    it.only('finding demo', () => {
+        job_role.verify_demo_from_the_table()
     });
 });

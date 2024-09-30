@@ -12,8 +12,9 @@ describe('Register Page', () => {
         signup.verify_registeration_successful()
         // signup.verify_registration_with_used_data()
     })
+
     it('Test 2: Registeration with already used email', () => {
         signup.register(`Ram`, `ram4@email.com`, `Password@123`, `Password@123`)
-        signup.verify_registration_with_used_data()
+        signup.verify_registration_with_already_used_email()
     })
 })

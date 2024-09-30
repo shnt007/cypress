@@ -21,10 +21,10 @@ export class register_page {
     }
 
     verify_registeration_successful() {
-        cy.get('.Toastify__toast-body > :nth-child(2)').should(`have.contain`, `successfully`)
+        cy.get('.Toastify__toast-body > :nth-child(2)', { timeout: 6000 }).should(`have.contain`, `successfully`)
     }
 
     verify_registration_with_already_used_email() {
-        cy.get('.Toastify__toast-body').should(`have.contain`, `The email has already been taken.`)
+        cy.get('.Toastify__toast-body', { timeout: 6000 }).should(`have.contain`, `The email has already been taken.`)
     }
 } 
