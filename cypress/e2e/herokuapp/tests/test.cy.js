@@ -63,9 +63,24 @@ describe('The Internet Herokuapp', () => {
         test.exit_intent_validation()
     })
 
-    it('`Test 15: File Download validation', () => {
-        
+    it('`Test 15: File Download Validation', () => {
+        test.file_download_validation()
     });
-    
+
+    it('Test 16: File Upload Validation', () => {
+        test.file_upload_valiadation()
+    });
+
+    xit('Test 17: Floating Menu Validation', () => {
+        test.floating_menu_validation()
+    });
+
+    it('Test 18: Forget Password Validation', () => {
+        test.forget_password_validation()
+    });
+
+    it.only('Test 19: Form Authentication Validation', () => {
+        test.form_authentication_validation()
+    });
 
 });

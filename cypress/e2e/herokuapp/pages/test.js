@@ -71,6 +71,27 @@ export class tests {
     exit_intent_link = `a[href="/exit_intent"]`
 
     // file download page
+    file_download_link = `a[href="/download"]`
+
+    //  file upload page
+    file_upload_link = `a[href="/upload"]`
+    choose_file = `#file-upload`
+    btn_upload = `#file-submit`
+
+    //floating menu page
+    floating_menu_link = `a[href='/floating_menu']`
+
+    // forget password page
+    forget_pass_link = `a[href='/forgot_password']`
+    email_textbox = `#email`
+    btn_retrive = `#form_submit`
+
+    // form authentication page
+    form_auth_link = `a[href='/login']`
+    username_txtbox = `#username`
+    password_txtbox = `#password`
+    btn_login = `button[type="submit"]`
+    btn_logout = `a[href="/logout"]`
 
 
     navigate_to_homepage() {
@@ -237,12 +258,56 @@ export class tests {
     }
 
     file_download_validation() {
-    
+        cy.get(this.file_download_link).click()
+        cy.get(`a[href="download/42a12624-eab9-4ed6-a4b7-594ce82a7b61.jpeg"]`)
+            .contains('42a12624-eab9-4ed6-a4b7-594ce82a7b61.jpeg').then((link) => {
+                const fileUrl = link.prop('href');
+
+                cy.request({
+                    url: fileUrl,
+                    encoding: 'binary',  // Use binary encoding for file downloads
+                }).then((response) => {
+                    expect(response.status).to.equal(200);
+
+                });
+            });
+
+
+    }
+
+
+    file_upload_valiadation() {
+        cy.get(this.file_upload_link).click()
+        cy.get(this.choose_file).selectFile(`D:\\cypress\\cypress\\downloads\\1.jpeg`)
+        cy.get('#file-submit').click()
+        cy.get(`div[class="example"]`).should(`have.contain`, `File Uploaded!`)
+        cy.wait(3000)
+        cy.go(`back`)
+        cy.get('#file-submit').click()
+        cy.get(`#drag-drop-upload`).selectFile(`D:\\cypress\\cypress\\downloads\\1.jpeg`, { action: 'drag-drop', })
+        cy.get(`div[class="example"]`).should(`have.contain`, `File Uploaded!`)
+    }
+
+    floating_menu_validation() {
+        cy.get(this.floating_menu_link).click()
+
+    }
+
+    forget_password_validation() {
+        cy.get(this.forget_pass_link).click()
+        cy.get(this.email_textbox).type(`abcd@email.com`)
+        cy.get(this.btn_retrive).click()
+    }
+
+    form_authentication_validation() {
+        cy.get(this.form_auth_link).click()
+        cy.get(this.username_txtbox).type(`tomsmith`)
+        cy.get(this.password_txtbox).type(`SuperSecretPassword!`)
+        cy.get(this.btn_login).click()
+        cy.get(`#flash-messages`).should(`have.contain`, `You logged into a secure area!`)
+        cy.get(this.btn_logout).click()
+    }
+
+
+
 }
-
-
-}
-
-
-
-
