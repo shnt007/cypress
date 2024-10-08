@@ -25,6 +25,23 @@ Cypress.on('uncaught:exception', (err, runnable) => {
     // failing the test
     return false
 })
+
+Cypress.Commands.add('dragAndDrop', (dragSelector, dropSelector) => {
+    const dataTransfer = new DataTransfer();
+
+    cy.get(dragSelector)
+        .trigger('dragstart', { dataTransfer });
+
+    cy.get(dropSelector)
+        .trigger('drop', { dataTransfer });
+
+    cy.get(dragSelector)
+        .trigger('dragend', { dataTransfer });
+});
+
+
+import '@4tw/cypress-drag-drop'
+
 //
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })

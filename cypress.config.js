@@ -12,7 +12,7 @@ module.exports = defineConfig({
   /** for html report */
   reporter: 'cypress-mochawesome-reporter',
   reporterOptions: {
-    reportPageTitle: 'demo',
+    reportPageTitle: 'test-report',
     reportFilename: "[status]_[datetime]-[name]-report",
     timestamp: "longDate",
     overwrite: false,

@@ -18,6 +18,9 @@ import './commands'
 
 require('cypress-xpath')
 
+
+// import '@4tw/cypress-drag-drop'
+
 /** for Html report */
 import 'cypress-mochawesome-reporter/register'
 

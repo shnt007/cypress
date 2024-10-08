@@ -9,7 +9,7 @@ export class job_role_learner {
     //dashboard  page elements
     i_ll_complete_later_dialogue_button = `.mt-4 > .rounded`
     job_role_menu_button = `a[href = "/job-trainings?type=user-preference"]`
-    all_upcoming_training_option_xpath = `(//span[@class='text-xs font-semibold whitespace-nowrap'])[2]`
+    all_ongoing_training_xpath = `(//span[@class='text-xs font-semibold whitespace-nowrap'])[3]`
     select_table = `table[class='w-full table-fixed']`
     table_data_xpath = `(//td[@class="first:pl-8 "])[2]`
     table_row_element = `tr[class*= 'table-row-institution']:nth-child(1)`
@@ -28,7 +28,7 @@ export class job_role_learner {
         cy.get(this.i_ll_complete_later_dialogue_button, { timeout: 5000 }).click()
         cy.get(this.job_role_menu_button).click();
         cy.wait(6000)
-        cy.xpath(this.all_upcoming_training_option_xpath).click()
+        cy.xpath(this.all_ongoing_training_xpath).click()
     }
 
     verify_no_of_row_and_column() {
