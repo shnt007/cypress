@@ -93,6 +93,49 @@ export class tests {
     btn_login = `button[type="submit"]`
     btn_logout = `a[href="/logout"]`
 
+    // nested frames page
+    frames_link = `a[href="/frames"]`
+    nested_frames_link = `a[href="/nested_frames"]`
+    top_frames = `frame[src="/frame_top"]`
+    left_frames = `frame[name="frame-left"]`
+    middle_frames = `frame[name="frame-middle"]`
+    right_frames = `frame[name="frame-right"]`
+    bottom_frames = `frame[name="frame-bottom"]`
+
+    // iframe page
+    iframe_link = `a[href="/iframe"]`
+    iframe_id = `#mce_0_ifr`
+
+    // Geolocation page
+    btn_where_am_i = `button[onclick="getLocation()"]`
+
+    // hover page
+    img1_details = `(//div[@class="figcaption"])[1]`
+    img2_details = `(//div[@class="figcaption"])[2]`
+    img3_details = `(//div[@class="figcaption"])[3]`
+    hover_img1 = `(//div[@class='figure'])[1]`
+    hover_img2 = `(//div[@class='figure'])[2]`
+    hover_img3 = `(//div[@class='figure'])[3]`
+
+    // infinite_scroll page
+    paragraph_element = `.jscroll-added`
+
+    // alert page
+    btn_jsAlert = `button[onclick="jsAlert()"]`
+    btn_jsConfirm = `button[onclick="jsConfirm()"]`
+    btn_jsPromopt = `button[onclick="jsPrompt()"]`
+
+    // New window handling page
+    new_tab_link = `a[href="/windows/new"]`
+
+    // notification message page
+    click_here_link = `a[href="/notification_message"]`
+
+    // redirection link
+    status_code_200 = `a[href="status_codes/200"]`
+    status_code_301 = `a[href="status_codes/301"]`
+    status_code_404 = `a[href="status_codes/404"]`
+    status_code_500 = `a[href="status_codes/500"]`
 
     navigate_to_homepage() {
         cy.visit(this.base_url)
@@ -275,7 +318,6 @@ export class tests {
 
     }
 
-
     file_upload_valiadation() {
         cy.get(this.file_upload_link).click()
         cy.get(this.choose_file).selectFile(`D:\\cypress\\cypress\\downloads\\1.jpeg`)
@@ -308,6 +350,178 @@ export class tests {
         cy.get(this.btn_logout).click()
     }
 
+    nested_frames_validation() {
+        cy.get(this.frames_link).click()
+        cy.get(this.nested_frames_link).click()
 
+        cy.get(this.top_frames).then($topFrame => {
+            const topBody = $topFrame[0].contentDocument; // Access the document of the top frame
+            cy.wrap(topBody).within(() => {
+
+                // Access the left frame inside the top frame
+                cy.get(this.left_frames).then($leftFrame => {
+                    const leftBody = $leftFrame[0].contentDocument; // Access the document of the left frame
+                    cy.wrap(leftBody.body).should('contain.text', 'LEFT');
+                });
+
+                // Access the middle frame inside the top frame
+                cy.get(this.middle_frames).then($middleFrame => {
+                    const middleBody = $middleFrame[0].contentDocument; // Access the document of the middle frame
+                    cy.wrap(middleBody.body).should('contain.text', 'MIDDLE');
+                });
+
+                // Access the right frame inside the top frame
+                cy.get(this.right_frames).then($rightFrame => {
+                    const rightBody = $rightFrame[0].contentDocument; // Access the document of the right frame
+                    cy.wrap(rightBody.body).should('contain.text', 'RIGHT');
+                });
+
+            });
+        });
+
+        // Access the bottom frame directly
+        cy.get(this.bottom_frames).then($bottomFrame => {
+            const bottomBody = $bottomFrame[0].contentDocument; // Access the document of the bottom frame
+            cy.wrap(bottomBody.body).should('contain.text', 'BOTTOM');
+
+        })
+    }
+
+    iframe_validation() {
+        cy.get(this.frames_link).click()
+        cy.get(this.iframe_link).click()
+
+        const iframe = cy.get('#mce_0_ifr')
+            .its('0.contentDocument.body')
+            .should('be.visible')
+            .then(cy.wrap)
+
+        iframe.clear().type('hello {ctl+a}')
+        cy.get(`button[title='Bold']`).click()
+    }
+
+    geolocation_validation() {
+        cy.contains(`Geolocation`).click()
+        cy.get(`#demo`).should(`contain.text`, `Click the button to get your current latitude and longitude`)
+        cy.get(this.btn_where_am_i).click()
+        cy.get(`#demo`).should(`contain.text`, `Latitude`)
+        cy.get(`#demo`).should(`contain.text`, `Longitude`)
+    }
+
+    horizontal_slider_validation() {
+        cy.contains('Horizontal Slider').click()
+        // cy.get(`input[type="range"]`).as(`slider`).click()
+        // cy.get(`@slider`).type(`{rightarrow}{rightarrow}{rightarrow}{rightarrow}`)
+        // cy.get(`#range`).invoke(`text`).then((slidervalue) => {
+        //     expect(parseFloat(slidervalue)).to.be.greaterThan(0)
+        // })
+
+        cy.get('input[type="range"]')
+            .click() // Focus on the slider
+            .trigger('mousedown', { which: 1 })
+            .trigger('mousemove', { clientX: 500 }) // Simulate dragging to the right
+            .trigger('mouseup');
+
+        // Validate the slider value is greater than 0
+        cy.get('#range').should('not.have.text', '0');
+    }
+
+    hovers_validation() {
+        cy.contains('Hovers').click()
+        cy.xpath(this.img1_details).should(`not.be.visible`)
+        cy.xpath(this.hover_img1).realHover()
+        cy.xpath(this.img1_details).should(`have.contain`, `name`)
+        cy.wait(2000)
+
+        cy.xpath(this.img2_details).should(`not.be.visible`)
+        cy.xpath(this.hover_img2).realHover()
+        cy.xpath(this.img2_details).should(`have.contain`, `name`)
+        cy.wait(2000)
+        cy.xpath(this.img3_details).should(`not.be.visible`)
+        cy.xpath(this.hover_img3).realHover()
+        cy.xpath(this.img3_details).should(`have.contain`, `name`)
+    }
+
+    infinite_scroll() {
+        cy.contains(`Infinite Scroll`).click()
+        for (let i = 0; i < 5; i++) {
+            cy.scrollTo(`bottom`)
+            cy.wait(1000)
+            cy.get(this.paragraph_element).should(`exist`)
+        }
+    }
+
+    inputs_validation() {
+        cy.contains(`Inputs`).click()
+        cy.get(`input[type="number"]`).type(`1234`).should(`have.value`, `1234`)
+        cy.get(`input[type="number"]`).type('{uparrow}').should(`have.value`, '1235')
+    }
+
+    alert_validation() {
+        cy.contains(`JavaScript Alerts`).click()
+
+        // Simple Alert with text and OK button
+        cy.get(this.btn_jsAlert).click()
+        cy.on(`Window:alert`, (t) => {
+            expect(t).to.contain('I am a JS Alert')
+        })
+        cy.get(`#result`).should(`have.contain`, `You successfully clicked an alert`)
+        cy.go("back")
+
+        // Confirmation ALert with text, OK and Cancel button
+        cy.go("forward")
+        cy.get(this.btn_jsConfirm).click()
+        cy.on('Window:confirm', (t) => {
+            expect(t).to.contain('I am a JS Confirm')
+        })
+        cy.get(`#result`).should(`have.contain`, `You clicked: Ok`)
+        cy.go("back")
+
+        // Prompt Alert having textbox for input
+        cy.go("forward")
+        cy.window().then((win) => {
+            cy.stub(win, 'prompt').returns('Welcome')
+        })
+        cy.get(this.btn_jsPromopt).click()
+        cy.get(`#result`).should(`have.contain`, `You entered`)
+
+    }
+
+    window_validation() {
+        cy.contains(`Multiple Windows`).click()
+        cy.get(this.new_tab_link).invoke('removeAttr', 'target').click()
+        cy.get(`h3`).should(`have.contain`, 'New Window')
+    }
+
+    notification_message() {
+        cy.contains(`Notification Messages`).click()
+        cy.get(`#flash`).should(`have.contain`, ` Action`)
+        cy.get(this.click_here_link).click()
+        cy.get(`#flash`).should(`have.contain`, ` Action`)
+    }
+
+    redirect_link() {
+        cy.contains(`Redirect Link`).click()
+        cy.get(`.example`).should(`have.contain`, `Redirection`)
+        cy.get(`#redirect`).click()
+        cy.get(`.example`).should(`have.contain`, `Status Code`)
+
+    }
+
+    status_code_validaiton() {
+        cy.contains(`Status Codes`).click()
+        cy.get(`.example`).should(`have.contain`, `Status Codes`)
+
+        cy.get(this.status_code_200).click()
+        cy.get(`.example`).should(`have.contain`, `200 status code`)
+        cy.contains(`here`).click()
+
+        cy.get(this.status_code_301).click()
+        cy.get(`.example`).should(`have.contain`, `301 status code`)
+        cy.contains(`here`).click()
+
+        cy.get(this.status_code_500).click()
+        cy.get(`.example`).should(`have.contain`, `500 status code`)
+    }
 
 }

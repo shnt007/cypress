@@ -39,6 +39,12 @@ Cypress.Commands.add('dragAndDrop', (dragSelector, dropSelector) => {
         .trigger('dragend', { dataTransfer });
 });
 
+// Cypress.Commands.add('getIframe', (iframe) => {
+//     return cy.get(iframe)
+//         .its('0.contentDocument.body')
+//         .should('be.visible')
+//         .then(cy.wrap)
+// });
 
 import '@4tw/cypress-drag-drop'
 import 'cypress-file-upload';

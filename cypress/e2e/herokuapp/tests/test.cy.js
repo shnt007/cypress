@@ -79,8 +79,51 @@ describe('The Internet Herokuapp', () => {
         test.forget_password_validation()
     });
 
-    it.only('Test 19: Form Authentication Validation', () => {
+    it('Test 19: Form Authentication Validation', () => {
         test.form_authentication_validation()
     });
 
+    it('Test 20: Nested Frames Validation', () => {
+        test.nested_frames_validation()
+    });
+
+    it('Test 21: Iframe Validaton', () => {
+        test.iframe_validation()
+    });
+
+    it('Test 22: Geolocation Validation', () => {
+        test.geolocation_validation()
+    });
+
+    xit('Test 23: Horizontal Slider Validation', () => {
+        test.horizontal_slider_validation()
+    });
+
+    it('Test 24: Hovers Validation', () => {
+        test.hovers_validation()
+    });
+
+    it('Test 25: Infinite Scroll', () => {
+        test.infinite_scroll()
+    });
+
+    it(`Test 26: Inputs Validation`, () => {
+        test.inputs_validation()
+    })
+
+    it('Test 27: Javascripts Alert Validation', () => {
+        test.alert_validation()
+    });
+
+    it('Test 28: Multiple Window Handling', () => {
+        test.window_validation()
+    });
+
+    it(`Test 29: Notification Message Handling`, () => {
+        test.notification_message()
+    })
+
+    it.only(`Test 30: Status Codes Validation`, () => {
+        test.status_code_validaiton()
+    })
 });
