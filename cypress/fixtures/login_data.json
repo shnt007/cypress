@@ -1,10 +1,10 @@
 {
     "valid_data": {
-        "email": "subash.gole+labadmin1@codingmountain.com",
+        "email": "subash.gole+newsuperadmin@codingmountain.com",
         "password": "@secret@"
     },
     "invalid_password": {
-        "email": "subash.gole+labadmin1@codingmountain.com",
+        "email": "subash.gole+newsuperadmin@codingmountain.com",
         "password": "password@123"
     },
     "invalid_email": {

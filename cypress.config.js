@@ -2,6 +2,11 @@ const { defineConfig } = require("cypress");
 
 module.exports = defineConfig({
 
+  // "env": {
+  //   "theme": "dark",
+  // },
+
+
   /* Auto Reload  */
   watchForFileChanges: false,
 

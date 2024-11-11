@@ -17,7 +17,7 @@ export class job_role_training {
 
     //Add a new job role training page elements
     traning_title_textbox = `#name`
-    training_description_textbox = `.ql-editor`
+    training_description_textbox_xpath = `(//div[@class= 'ql-editor ql-blank'])[1]`
     start_date_xpath = `(//input[@placeholder='DD-MM-YY'])[1]`
     end_date_xpath = `(//input[@placeholder='DD-MM-YY'])[2]`
     training_start_time_xpath = `(//input[@placeholder='Select start time'])[1]`
@@ -61,7 +61,7 @@ export class job_role_training {
         cy.get(this.traning_title_textbox).type("Demo")
 
         /** Description */
-        cy.get(this.training_description_textbox).type("This is a demo")
+        cy.xpath(this.training_description_textbox_xpath).type("This is a demo")
 
         /* Start Date */
         cy.xpath(this.start_date_xpath).click()
@@ -169,7 +169,7 @@ export class job_role_training {
 
     verify_creating_job_role_traning_with_invalid_data() {
         cy.get(`.Toastify__toast-body`).should('have.contain', 'Please review the information filled.')
-        
+
     }
 
 }

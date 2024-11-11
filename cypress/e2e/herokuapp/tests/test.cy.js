@@ -123,7 +123,7 @@ describe('The Internet Herokuapp', () => {
         test.notification_message()
     })
 
-    it.only(`Test 30: Status Codes Validation`, () => {
+    it(`Test 30: Status Codes Validation`, () => {
         test.status_code_validaiton()
     })
 });

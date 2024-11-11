@@ -8,7 +8,7 @@ describe('Register Page', () => {
 
 
     it('Test 1: Registeration with valid data', () => {
-        signup.register(`Ram`, `ram15@email.com`, `Password@123`, `Password@123`)
+        signup.register(`Ram`, `ram16@email.com`, `Password@123`, `Password@123`)
         signup.verify_registeration_successful()
         // signup.verify_registration_with_used_data()
     })

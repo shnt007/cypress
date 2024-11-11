@@ -1,5 +1,5 @@
 export class signp_data {
-    base_url = `https://qacollegetest.stage.careerservicelab.com/signup`
+    base_url = `https://sl.stage.careerservicelab.com/signup`
     name_textbox = `#full_name`
     email_textbox = `#email`
     password_textbox = `#password`

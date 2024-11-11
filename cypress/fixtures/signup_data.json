@@ -1,7 +1,7 @@
 {
     "valid_data": {
         "name": "Ram",
-        "email": "demo10@email.com",
+        "email": "demo2@email.com",
         "password": "P@ssword123",
         "confirm_password": "P@ssword123"
     },

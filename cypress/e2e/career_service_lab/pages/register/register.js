@@ -1,6 +1,6 @@
 export class register_page {
 
-    url = `https://qacollegetest.stage.careerservicelab.com/signup`
+    url = `https://sl.stage.careerservicelab.com/signup`
     name_textbox = `#full_name`
     email_textbox = `#email`
     password_textbox = `#password`

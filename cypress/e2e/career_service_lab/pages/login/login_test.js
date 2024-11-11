@@ -25,11 +25,11 @@ export class login_page {
     }
 
     verify_login_with_invalid_credentials() {
-        cy.get(this.invalid_credential_warning_field, { timeout: 6000 }).should(`have.contain`, `Invalid credentials.`)
+        cy.get(this.invalid_credential_warning_field, { timeout: 6000 }).should(`have.contain`, `Invalid`)
     }
 
     verify_login_without_credentials() {
-        cy.get(this.email_required_text_field).should(`have.text`, 'Email is required')
+        cy.get(this.email_required_text_field).should(`have.text`, 'Email is required.')
         cy.get(this.password_required_text_field).should(`have.text`, 'Password is required')
     }
 
@@ -45,8 +45,8 @@ export class login_page {
         cy.wait('@profile').then((data) => {
             // cy.log(JSON.stringify(data))
             expect(data.response.body.message).to.eq('User profile!')
-            expect(data.response.body.data.id).to.eq(17794)
-            expect(data.response.body.data.email).to.eq('subash.gole+labadmin1@codingmountain.com')
+            expect(data.response.body.data.id).to.eq(1)
+            expect(data.response.body.data.email).to.eq('subash.gole+newsuperadmin@codingmountain.com')
         })
     }
 

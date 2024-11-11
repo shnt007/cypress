@@ -7,7 +7,7 @@ describe('Login Test', () => {
     })
 
     it('Test 1: Login with valid credentials', () => {
-        signin.login('subash.gole+labadmin1@codingmountain.com', '@secret@')
+        signin.login('subash.gole+newsuperadmin@codingmountain.com', 'secret@')
         signin.verify_login_with_valid_credentials()
     })
 
@@ -23,12 +23,12 @@ describe('Login Test', () => {
     })
 
     it('Test 4: Login Api Verification using Intercept', () => {
-        signin.login('subash.gole+labadmin1@codingmountain.com', '@secret@')
+        signin.login('subash.gole+newsuperadmin@codingmountain.com', '@secret@')
         signin.verify_login_api_using_intercept()
     })
 
     it('Test 5: Profile Api Verfication using Intercept', () => {
-        signin.login('subash.gole+labadmin1@codingmountain.com', '@secret@')
+        signin.login('subash.gole+newsuperadmin@codingmountain.com', '@secret@')
         signin.verify_profile_api_using_intercept()
     })
 })
